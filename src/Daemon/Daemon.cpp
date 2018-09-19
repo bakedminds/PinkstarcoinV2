@@ -236,6 +236,21 @@ int main(int argc, char* argv[])
     // configure logging
     logManager.configure(buildLoggerConfiguration(cfgLogLevel, cfgLogFile));
 
+	    logger(INFO, BRIGHT_GREEN) <<
+
+  "\n                                   \n"
+
+"   _______  ___  _______  _______  _______  ______    ___  __   __  __   __  \n"
+"  |  _    ||   ||       ||       ||       ||    _ |  |   ||  | |  ||  |_|  |  \n"
+"  | |_|   ||   ||_     _||_     _||   _   ||   | ||  |   ||  | |  ||       | \n"
+"  |       ||   |  |   |    |   |  |  | |  ||   |_||_ |   ||  |_|  ||       | \n"
+"  |  _   | |   |  |   |    |   |  |  |_|  ||    __  ||   ||       ||       | \n"
+"  | |_|   ||   |  |   |    |   |  |       ||   |  | ||   ||       || ||_|| | \n"
+"  |_______||___|  |___|    |___|  |_______||___|  |_||___||_______||_|   |_| \n"
+
+
+ << ENDL;
+	  
     logger(INFO, BRIGHT_GREEN) << "Welcome to " << CryptoNote::CRYPTONOTE_NAME << " v" << PROJECT_VERSION_LONG;
 
     if (command_line_preprocessor(vm, logger)) {
