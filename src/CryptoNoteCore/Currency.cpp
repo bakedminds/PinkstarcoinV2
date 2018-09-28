@@ -1,4 +1,5 @@
 // Copyright (c) 2012-2017, The CryptoNote developers, The Bytecoin developers
+// Copyright (c) 2018, The Bittorium developers
 //
 // This file is part of Bytecoin.
 //
@@ -94,7 +95,7 @@ bool Currency::generateGenesisBlock() {
   //std::string hex_tx_represent = Common::toHex(txb);
 
   // Hard code coinbase tx in genesis block, because through generating tx use random, but genesis should be always the same
-  std::string genesisCoinbaseTxHex = "010a01ff0001809cc99b0502bd6f5dc7f91c8b754e09b9121a26d156e85dcda497a3c46f1f3c9522879ef76e21016180bd3347008073269a717bb6a4163184fa74f7cb07f3a847505673afd4471f";
+  std::string genesisCoinbaseTxHex = "010a01ff000180a4a7da06028e505c361665ab0b4446fdb33f5b665426fa53060f8c01dbdb57381795bb3eb22101befd3e3ca6affbe16d62fe15367cf4720b97571c60d8b6f49e17901b7b937822";
   BinaryArray minerTxBlob;
 
   bool r =

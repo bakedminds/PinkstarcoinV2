@@ -502,14 +502,16 @@ struct f_block_short_response {
   std::string hash;
   uint64_t tx_count;
   uint64_t cumul_size;
+  uint64_t reward;
 
   void serialize(ISerializer &s) {
     KV_MEMBER(difficulty)
     KV_MEMBER(timestamp)
     KV_MEMBER(height)
     KV_MEMBER(hash)
-    KV_MEMBER(cumul_size)
     KV_MEMBER(tx_count)
+    KV_MEMBER(cumul_size)
+    KV_MEMBER(reward)
   }
 };
 
@@ -880,4 +882,17 @@ struct COMMAND_RPC_GET_PEERSGRAY {
   };
 };
 
+struct COMMAND_RPC_GET_ISSUED_COINS {
+  typedef EMPTY_STRUCT request;
+
+  struct response {
+    std::string alreadyGeneratedCoins;
+    std::string status;
+
+    void serialize(ISerializer &s) {
+      KV_MEMBER(alreadyGeneratedCoins)
+      KV_MEMBER(status)
+    }
+  };
+};
 }

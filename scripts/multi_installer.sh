@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-
-# PinkstarcoinV2 Multi-installer
-# a one line clone-and-compile for pinkstarcoinv2:
+# Bittoirum Multi-installer
+# a one line clone-and-compile for Bittorium:
 #
-#     ` $ curl -sL "https://raw.githubusercontent.com/pinkstarcoinv2/pinkstarcoinv2/master/multi_installer.sh" | bash
+#     ` $ curl -sL "https://raw.githubusercontent.com/bittorium/Bittorium/master/multi_installer.sh" | bash
 #
 # Supports Ubuntu 16.04 LTS, OSX 10.10+
 # Supports building project from current directory (automatic detection)
+#Thanks to pinkstarcoin 
 
 set -o errexit
 set -o pipefail
@@ -31,7 +31,7 @@ _note() {
 _fail() {
     local msg=`echo \'$1\'`
     _colorize red "Failure: $msg" | tee -a build.log && echo
-    _colorize red "Please check build.log and if you need help check out the team discord @ 'https://discordapp.com/invite/NZ7QYJA'" && echo
+    _colorize red "Please check build.log and if you need help check out the team discord @ 'https://discord.gg/aMF2vUF'" && echo
     _colorize purple "Exiting script" && echo
     exit 1
 }
@@ -41,26 +41,26 @@ _set_wd() {
         _note "Building project from current working directory ($PWD)"
     else
         _note "Cloning project with git..."
-        if [ -d "$PWD"/pinkstarcoinv2 ]; then
-            read -r -p "${1:-pinkstarcoinv2 directory already exists. Overwrite? [y/N]} " response
+        if [ -d "$PWD"/bittorium ]; then
+            read -r -p "${1:-bittorium directory already exists. Overwrite? [y/N]} " response
             case "$response" in
                 [yY][eE][sS|[yY])
-                    _colorize red "Overwriting old pinkstarcoinv2 directory" && echo
-                    rm -rf "$PWD"/pinkstarcoinv2
+                    _colorize red "Overwriting old Bittorium directory" && echo
+                    rm -rf "$PWD"/bittorium
                     ;;
                 *)
-                    _fail "pinkstarcoinv2 directory already exists. Aborting..."
+                    _fail "bittorium directory already exists. Aborting..."
                     ;;
             esac
         fi
-        mkdir pinkstarcoinv2
-        git clone -q https://github.com/pinkstarcoinv2/pinkstarcoinv2 pinkstarcoinv2   >>build.log 2>&1 || _fail "Unable to clone git repository. Please see build.log for more information"
-        cd pinkstarcoinv2
+        mkdir Bittorium
+        git clone -q https://github.com/bittorium/Bittorium Bittorium   >>build.log 2>&1 || _fail "Unable to clone git repository. Please see build.log for more information"
+        cd Bittorium
     fi
 }
 
-_build_pinkstarcoinv2() {
-    _note "Building pinkstarcoinv2 from source (this might take a while)..."
+_build_Bittorium() {
+    _note "Building Bittorium from source (this might take a while)..."
     if [ -d build ]; then
         _colorize red "Overwriting old build directory" && echo
         rm -rf build
@@ -109,7 +109,7 @@ _configure_linux() {
     elif [ "$(awk -F= '/^NAME/{print $2}' /etc/os-release)" = "\"Debian GNU/Linux\"" ]; then
         _configure_debian
     else
-        _fail "Your OS version isn't supported by this installer. Please consider adding support for your OS to the project ('https://github.com/pinkstarcoinv2')"
+        _fail "Your OS version isn't supported by this installer. Please consider adding support for your OS to the project ('https://github.com/bittorium')"
     fi
 }
 
@@ -138,19 +138,21 @@ _configure_os() {
             _configure_osx
             ;;
         *)
-            _fail "This installer only runs on OSX 10.10+ and Ubuntu 16.04+. Please consider adding support for your OS to the project ('https://github.com/pinkstarcoinv2')"
+            _fail "This installer only runs on OSX 10.10+ and Ubuntu 16.04+. Please consider adding support for your OS to the project ('https://github.com/bittorium')"
             ;;
     esac
     _note "Operating system configuration completed. You're halfway there!"
 }
 
-_note "PinkstarcoinV2 Multi_Installer v1.0 (pepperoni)"
+_note "Bittorium Multi_Installer v1.0"
 _colorize green " _______         _   _       _____      _       \n|__   __|       | | | |     / ____|    (_)      \n   | |_   _ _ __| |_| | ___| |     ___  _ _ __  \n   | | | | | '__| __| |/ _ \ |    / _ \| | '_ \ \n   | | |_| | |  | |_| |  __/ |___| (_) | | | | |\n   |_|\__,_|_|   \__|_|\___|\_____\___/|_|_| |_|\n" && echo
 
 _configure_os
 
 _set_wd
-_build_pinkstarcoinv2
+_build_Bittorium
 
 _note "Installation complete!"
-_note "Look in 'pinkstarcoinv2/build/src/' for the executible binaries. See 'https://github.com/pinkstarcoinv2/pinkstarcoinv2' for more project support. Cowabunga!"
+_note "Look in 'Bittorium/build/src/' for the executible binaries. See 'https://github.com/bittorium/Bittorium' for more project support."
+
+
